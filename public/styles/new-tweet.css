@@ -13,7 +13,7 @@
 
 .new-tweet textarea {
   background-color: #f4f1ec;
-  border-bottom: solid 5px black;
+  border-bottom: solid 10px black;
   font-weight: bold;
   width: 100%;
   margin-bottom: 10px;
@@ -27,4 +27,8 @@
   background-color: #4056A1;
   color: #FFFFFF;
   cursor: pointer;
+}
+
+.redLimit {
+  color: red;
 }
