@@ -37,7 +37,45 @@ body {
 }
 
 p {
-  
   align-content: center;
   background-color: #f4f1ec;
+}
+
+main article:hover {
+  font-weight: bold;
+  box-shadow: 10px 10px 5px #0c7994;
+}
+
+main article:hover .handle {
+  visibility: visible;
+}
+
+main article {
+  margin-top: 50px;
+  border: solid 5px grey;
+  padding: 10px;
+  font-weight: normal;
+  margin-bottom: 50px;
+}
+
+article footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-size: 16px;
+  border-top: solid 5px gray;
+}
+
+article header {
+  display: flex;
+  justify-content: space-between;
+}
+
+article header div {
+  padding-right: 15px;
+  display: flex;
+  align-items: center;
+}
+article footer i {
+  padding-right: 10px;
 }
