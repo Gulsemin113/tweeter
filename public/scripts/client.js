@@ -44,7 +44,16 @@ const createTweetElement = function(tweet) {
     </article>`);
 
 return $tweet;
-}
+};
 
-renderTweets(data);
+$('#submit-tweet').submit(function (event) {
+  event.preventDefault();
+  const formData = ($(this).serialize());
+
+  $.ajax('/tweets/', { method: 'POST', data: formData })
+  .then(function(response) {
+    console.log('Response: ', response);
+  })
+
+});
 
