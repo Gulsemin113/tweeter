@@ -46,3 +46,9 @@ $('#submit-tweet').submit(function (event) {
 
 });
 
+const loadtweets = () => {
+  $.ajax('/tweets/', { method: 'GET'})
+  .then(function(response) {
+    renderTweets(response);
+  }) ;
+};
