@@ -17,12 +17,15 @@ const tweetData = {
 }
 
 const renderTweets = function(tweets) {
-// loops through tweets
-// calls createTweetElement for each tweet
-// takes return value and appends it to the tweets container
+  for (const tweet of tweets) {
+    const $tweet = createTweetElement(tweet);
+    $('#tweets-container').append($tweet);
+  }
 }
 
 const createTweetElement = function(tweet) {
+  const tweetDate = new Date(tweet.created_at);
+  timeago.format(tweetDate);
   let $tweet = (`
     <article class = "tweets">
       <header>
