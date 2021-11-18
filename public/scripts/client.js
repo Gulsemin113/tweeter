@@ -1,11 +1,16 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
-// Fake data taken from initial-tweets.json
+$(document).ready(function() {
+  const escape = function (str) {
+    let div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
 
-$(document).ready(function () {
+  const loadtweets = () => {
+    $.ajax('/tweets/', { method: 'GET'})
+      .then(function(response) {
+        renderTweets(response);
+      });
+  };
 
   const renderTweets = function(tweets) {
     for (const tweet of tweets) {
@@ -20,12 +25,12 @@ $(document).ready(function () {
     let $tweet = (`
       <article class = "tweets">
         <header>
-          <a><i class="fa-brands fa-canadian-maple-leaf"></i>${tweet.user.name}</a>
-          <span class = "username">${tweet.user.handle}</span>
+          <a><i class="fa-brands fa-canadian-maple-leaf"></i>${escape(tweet.user.name)}</a>
+          <span class = "username">${escape(tweet.user.handle)}</span>
         </header>
-        <p> ${tweet.content.text}</p>
+        <p> ${escape(tweet.content.text)}</p>
         <footer>
-          <span class = "time-left">${tweet.created_at}</span>
+          <span class = "time-left">${escape(tweet.created_at)}</span>
             <div class = "tweet-icons">
               <i class="fas fa-flag"></i>
               <i class="fas fa-retweet"></i>
@@ -34,28 +39,25 @@ $(document).ready(function () {
         </footer>
       </article>`);
 
-  return $tweet;
+    return $tweet;
   };
 
-  $('#submit-tweet').submit(function (event) {
+  loadtweets();
+
+  $('#submit-tweet').submit(function(event) {
     event.preventDefault();
     const formData = ($(this).serialize());
-    const tweetText = $("#tweet-text").val(); 
+    const tweetText = $("#tweet-text").val();
     if (tweetText.length > 140 || tweetText.length === 0) {
       alert("Invalid tweet");
     } else {
-    $.ajax('/tweets/', { method: 'POST', data: formData })
-    .then(function(tweet) {
-      loadtweets();
-    })
-  }
+      $.ajax('/tweets/', { method: 'POST', data: formData })
+        .then(function(tweet) {
+          loadtweets();
+        });
+    }
 
   });
 
-  const loadtweets = () => {
-    $.ajax('/tweets/', { method: 'GET'})
-    .then(function(response) {
-      renderTweets(response);
-    }) ;
-  };
+  
 });
