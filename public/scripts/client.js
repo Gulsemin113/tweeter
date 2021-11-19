@@ -11,30 +11,33 @@ $(document).ready(function() {
         renderTweets(response);
       });
   };
-  const renderTweets = function(tweets) {
-  $('#tweets-container').empty();
-  const sortTweets = tweets.sort((a,b) => a.created_at - b.created_at);
-  for (const tweet of sortTweets) {
-    renderTweet(tweet);
-  }
-};
 
-  const renderTweets = function(tweet) {
-      const $tweet = createTweetElement(tweet);
-      $('#tweets-container').append($tweet);
-    
+  
+
+  const renderTweets = function(tweets) {
+    $('#tweets-container').empty();
+    const sortTweets = tweets.sort((a,b) => a.created_at - b.created_at);
+    for (const tweet of sortTweets) {
+      renderTweet(tweet);
+    } 
   };
 
+  const renderTweet = function(tweet) {
+    const $tweet = createTweetElement(tweet);
+    $('#tweets-container').prepend($tweet);
+    
+  };
+  
+ 
   const createTweetElement = function(tweet) {
-    const tweetDate = new Date(tweet.created_at);
-    timeago.format(tweetDate);
     let $tweet = (`
       <article class = "tweets">
         <header>
           <a><i class="fa-brands fa-canadian-maple-leaf"></i>${escape(tweet.user.name)}</a>
           <span class = "username">${escape(tweet.user.handle)}</span>
         </header>
-        <p> ${escape(tweet.content.text)}</p>
+        <br>
+        <div class="tweet-text-container">${escape(tweet.content.text)}</div>
         <footer>
           <span class = "time-left">${moment(tweet.created_at).fromNow()}</span>
             <div class = "tweet-icons">
@@ -51,18 +54,26 @@ $(document).ready(function() {
 
   $('#submit-tweet').submit(function(event) {
     event.preventDefault();
-    const formData = ($(this).serialize());
+    const formData = $(this).serialize();
     const tweetText = $("#tweet-text").val();
-    if (tweetText.length > 140 || tweetText.length === 0) {
-      alert("Invalid tweet");
+    
+    if (tweetText.length > 140) {
+      $('#tweet-err').html('Your tweet is long!');
+      $('#tweet-err').slideDown(300);
+    } else if (tweetText.length === 0) {
+      $('#tweet-err').html('Please enter your tweet!');
+      $('#tweet-err').slideDown(300);
     } else {
-      $.ajax('/tweets/', { method: 'POST', data: formData })
+      $('#tweet-err').slideUp(300);
+      $('#tweet-text').val("");
+      $('.counter').val(140);
+      $.ajax('/tweets/', { method : 'POST', data : formData})
         .then(function(response) {
           loadtweets();
         });
     }
-
   });
 
   loadtweets();
+  
 });
