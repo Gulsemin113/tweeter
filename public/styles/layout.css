@@ -43,7 +43,7 @@ p {
 
 main article:hover {
   font-weight: bold;
-  box-shadow: 10px 10px 5px #0c7994;
+  box-shadow: 10px 10px 5px rosybrown;
 }
 
 main article:hover .handle {
@@ -78,4 +78,26 @@ article header div {
 }
 article footer i {
   padding-right: 10px;
+}
+
+.fa-flag:hover {
+  color:royalblue;
+}
+
+.fa-retweet:hover {
+  color:royalblue;
+}
+.fa-heart:hover {
+  color:royalblue;
+}
+
+@media only screen and (min-width: 1024px) {
+  .content-container {
+    width: 50%;
+  }
+
+  .container {
+    flex-direction: row;
+    justify-content: space-around;
+  }
 }
