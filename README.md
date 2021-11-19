@@ -1,3 +1,9 @@
+## Final Product
+
+!["Desktop Size"](https://github.com/Gulsemin113/tinyapp/blob/master/docs/Login%20Page%20-1.png)
+
+
+
 # Tweeter Project
 
 Tweeter is a simple, single-page Twitter clone.
@@ -16,3 +22,6 @@ This repository is the starter code for the project: Students will fork and clon
 
 - Express
 - Node 5.10.x or above
+- Body-parser
+- Change
+- md5
