@@ -33,3 +33,22 @@
 .redLimit {
   color: red;
 }
+
+.handle {
+  visibility: hidden;
+  color: #add8e6;
+}
+
+.error-message {
+  color: red;
+  display: flex;
+  align-items: center;
+  font-size: 14;
+}
+
+
+.hidden {
+  display: none;
+}
+
+
