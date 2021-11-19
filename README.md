@@ -1,6 +1,8 @@
 ## Final Product
 
-!["Desktop Size"](https://github.com/Gulsemin113/tinyapp/blob/master/docs/Login%20Page%20-1.png)
+!["Desktop Size"](https://github.com/Gulsemin113/tweeter/blob/master/docs/Deskstop%20size.png)
+!["Phone Size"](https://github.com/Gulsemin113/tweeter/blob/master/docs/Phone%20size.png)
+
 
 
 
